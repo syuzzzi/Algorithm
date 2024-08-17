@@ -1,3 +1,6 @@
+# all_div와 all_no_div 함수에서 all을 쓰지 않고 for문을 써서 했더니 시간초과.
+# 최대공약수를 for문으로 구하면 시간 초과.
+
 import math
 from functools import reduce
 
