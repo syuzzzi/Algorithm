@@ -1,12 +1,8 @@
-# all_div와 all_no_div 함수에서 all을 쓰지 않고 for문을 써서 했더니 시간초과.
+# all_no_div 함수에서 all을 쓰지 않고 for문을 써서 했더니 시간초과.
 # 최대공약수를 for문으로 구하면 시간 초과.
 
 import math
 from functools import reduce
-
-# 배열의 모든 수가 i로 나눠 떨어지는지 확인하는 함수
-def all_div(i, nums):
-    return all(num % i == 0 for num in nums)
 
 # 배열의 모든 수가 i로 나눠 떨어지지 않는지 확인하는 함수
 def all_no_div(i, nums):
@@ -14,7 +10,7 @@ def all_no_div(i, nums):
   
 # 최대공약수 구하기
 def GCD(arr) :
-    return reduce(math.gcd, arr)
+    return reduce(math.gcd, arr) # reduce를 쓰면 배열에 대한 최대공약수를 구할 수 있음
         
 def solution(arrayA, arrayB):
     Anum = GCD(arrayA) # arrayA의 최대공약수
