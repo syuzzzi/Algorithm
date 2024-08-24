@@ -16,7 +16,7 @@ def solution(bridge_length, weight, truck_weights):
       moving.append(new_truck)
       current_weight += new_truck
       
-    else : # 대기 중인 트럭이 없거나 새로 건너게 할 수 없다면
-      moving.append(0)
+    else : # 대기 중인 트럭이 없거나 새로 건너게 할 수 없다면(무게를 초과해서)
+      moving.append(0) # 빈공간 만들어주기
       
   return time
