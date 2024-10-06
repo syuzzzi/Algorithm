@@ -1,26 +1,30 @@
+# 행성이 이어진 edge가 주어져 있지 않기에 edge를 임의로 구해주는 것이 관건인 문제
+
 import sys
 input = sys.stdin.readline
 
-def find(parent, x) : # 부모 찾는 함수
+# 부모 찾는 함수. 부모의 부모가 바뀌어도 업데이트 해 줌.
+def find(parent, x) : 
   if parent[x] != x :
     parent[x] = find(parent, parent[x])
     
   return parent[x]
 
-def union(parent, rank, a, b) : # 합치는 함수
+# 합치는 함수. a와 rootA를 자꾸 헷갈린다...
+def union(parent, rank, a, b) :
   rootA = find(parent, a)
   rootB = find(parent, b)
   
-  if rootA != rootB :
-    if rank[rootA] > rank[rootB] : # a의 깊이가 더 깊다면
-      parent[rootB] = rootA # b의 부모를 a로
+  if rootA != rootB : # 부모가 다를 때
+    if rank[rootA] > rank[rootB] : # a 조상의 깊이가 더 깊다면
+      parent[rootB] = rootA # b의 부모를 rootA로. 깊은 a에 b를 붙이는게 더 낫기 때문
       
-    elif rank[rootA] < rank[rootB] :
-      parent[rootA] = rootB
+    elif rank[rootA] < rank[rootB] : # b 조상의 깊이가 더 깊다면
+      parent[rootA] = rootB # a의 부모를 rootB로
     
-    else :
-      parent[rootB] = rootA
-      rank[rootA] += 1
+    else : # 깊이가 똑같다면
+      parent[rootB] = rootA # b의 부모를 rootA로
+      rank[rootA] += 1 # rootA에 깊이를 하나 더해줌
 
 n = int(input()) # 행성 개수
 
@@ -52,5 +56,5 @@ for edge in edges :
   if find(parent, a) != find(parent, b) : # 부모가 다르면 
     union(parent, rank, a, b) # 합쳐줌
     result += cost
-    
+  
 print(result)
